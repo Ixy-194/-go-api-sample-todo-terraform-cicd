@@ -7,7 +7,7 @@ data "aws_ssm_parameter" "this" {
 
 resource "aws_instance" "this" {
   ami                  = data.aws_ssm_parameter.this.value
-  instance_type        = "t2.nano"
+  instance_type        = "t2.nanotest"
   subnet_id            = var.subnet_id
   iam_instance_profile = aws_iam_instance_profile.this.name
 
