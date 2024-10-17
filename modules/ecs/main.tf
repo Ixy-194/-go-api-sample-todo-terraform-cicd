@@ -23,7 +23,7 @@ resource "aws_ecs_service" "this" {
     subnets         = var.subnets
     security_groups = [aws_security_group.this.id]
   }
-  
+
   # ALB との紐付け
   load_balancer {
     target_group_arn = aws_lb_target_group.this.arn
@@ -99,8 +99,8 @@ resource "aws_lb_target_group" "this" {
 
 # listener の作成
 resource "aws_lb_listener" "http" {
-  port     = "80"
-  protocol = "HTTP"
+  port              = "80"
+  protocol          = "HTTP"
   load_balancer_arn = var.lb.arn
 
   default_action {
