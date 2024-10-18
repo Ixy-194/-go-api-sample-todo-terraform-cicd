@@ -2,7 +2,7 @@
 locals {
   master_username = "admin"
   engine          = "aurora-mysql"
-  engine_version  = "8.0.mysql_aurora.3.02.0"
+  engine_version  = "8.0.mysql_aurora.3.07"
   instance_class  = "db.t4g.medium"
   database_name   = "todo"
 }
