@@ -9,6 +9,8 @@ locals {
   rds_subnets     = ["192.168.1.0/28", "192.168.1.16/28"]
   azs             = ["ap-northeast-1a", "ap-northeast-1c"]
 
+  service_name    = "go-api-sample-todo"
+
 }
 
 module "vpc" {
