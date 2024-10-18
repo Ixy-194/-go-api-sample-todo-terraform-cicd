@@ -59,10 +59,10 @@ module "vpc" {
 #   subnet_id = module.vpc.vpc.private_subnets[0]
 # }
 
-module "ecr" {
-  source = "../../modules/ecr"
+# module "ecr" {
+#   source = "../../modules/ecr"
 
-  env          = local.env
-  service_name = local.service_name
-}
+#   env          = local.env
+#   service_name = local.service_name
+# }
 
