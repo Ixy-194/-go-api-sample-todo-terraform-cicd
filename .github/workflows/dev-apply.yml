@@ -1,0 +1,44 @@
+name: Terraform Apply
+
+on:
+  workflow_run:
+    workflows:
+      - Terrraform Validation
+    branches:
+      - main
+    types: 
+      - completed
+
+
+jobs:
+  terraform:
+    name: Terraform Apply
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-northeast-1
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 1.9.8
+
+    - name: Init Terraform
+      working-directory: ./env/dev
+      run: |
+        terraform init
+
+    - name: Apply Terraform
+      working-directory: ./env/dev
+      run: terraform apply -auto-approve
