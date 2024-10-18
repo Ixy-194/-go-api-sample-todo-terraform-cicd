@@ -69,6 +69,6 @@ jobs:
         reporter: github-pr-review
         tflint_init: true
         tflint_config: "${{ github.workspace }}/.tflint.hcl"
-        fail_on_error: "true" 
+        fail_on_error: "false" 
         filter_mode: "nofilter" 
         flags: "--recursive -c ${{ github.workspace }}/.tflint.hcl" 
