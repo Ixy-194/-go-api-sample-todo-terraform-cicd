@@ -4,3 +4,7 @@ plugin "aws" {
     version = "0.34.0"
     source  = "github.com/terraform-linters/tflint-ruleset-aws"
 }
+
+rule "terraform_typed_variables" {
+  enabled = false
+}
