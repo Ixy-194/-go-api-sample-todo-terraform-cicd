@@ -70,5 +70,5 @@ jobs:
         tflint_config: "${{ github.workspace }}/.tflint.hcl"
         level: warning
         fail_on_error: "true" 
-        filter_mode: "nofilter" 
-        # flags: "--recursive" 
+        filter_mode: "added" 
+        flags: "--recursive" 
