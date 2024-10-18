@@ -2,7 +2,9 @@ name: Terrraform Validation
 
 on:
   pull_request:
-
+  push:
+    branches:
+      - main
 jobs:
   terraform:
     name: Terrraform Validation
