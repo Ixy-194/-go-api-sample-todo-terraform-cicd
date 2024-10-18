@@ -71,4 +71,4 @@ jobs:
         tflint_config: "${{ github.workspace}}/.tflint.hcl"
         fail_on_error: "true" 
         filter_mode: "nofilter" 
-        flags: "--recursive" 
+        flags: "--recursive -c $(realpath .tflint.hcl) -f compact" 
