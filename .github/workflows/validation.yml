@@ -72,4 +72,4 @@ jobs:
         level: warning
         fail_on_error: "true" 
         filter_mode: "nofilter" 
-        flags: "--recursive -c ${{ github.workspace }}/.tflint.hcl" 
+        flags: "--call-module-type=all" 
