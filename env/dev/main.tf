@@ -3,12 +3,12 @@
 locals {
   env = "dev"
 
-  cidr = "192.168.1.0/24"
-  public_subnets = ["192.168.1.64/28", "192.168.1.80/28"]
+  cidr            = "192.168.1.0/24"
+  public_subnets  = ["192.168.1.64/28", "192.168.1.80/28"]
   private_subnets = ["192.168.1.32/28", "192.168.1.48/28"]
-  rds_subnets = ["192.168.1.0/28", "192.168.1.16/28"]
-  azs = ["ap-northeast-1a", "ap-northeast-1c"]
-  service_name = "go-api-sample-todo"
+  rds_subnets     = ["192.168.1.0/28", "192.168.1.16/28"]
+  azs             = ["ap-northeast-1a", "ap-northeast-1c"]
+  service_name    = "go-api-sample-todo"
 }
 
 module "vpc" {

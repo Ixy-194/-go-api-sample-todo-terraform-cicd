@@ -31,7 +31,7 @@ resource "aws_rds_cluster" "this" {
     Environment = var.env
   }
 
-    lifecycle {
+  lifecycle {
     ignore_changes = [
       availability_zones,
     ]
@@ -46,7 +46,7 @@ resource "aws_rds_cluster_instance" "this" {
   engine_version     = local.engine_version
   cluster_identifier = aws_rds_cluster.this.id
   instance_class     = local.instance_class
-  
+
   tags = {
     Name        = "${var.env}-${local.database_name}-${count.index}"
     Terraform   = "true"
@@ -109,9 +109,9 @@ resource "aws_security_group_rule" "this" {
 
 # 各種パラメータを AWS Systems Manager Parameter Store へ保存
 resource "aws_ssm_parameter" "master_username" {
-  name      = "/${var.env}/rds/${local.database_name}/master_username"
-  type      = "SecureString"
-  value     = aws_rds_cluster.this.master_username
+  name  = "/${var.env}/rds/${local.database_name}/master_username"
+  type  = "SecureString"
+  value = aws_rds_cluster.this.master_username
 
   tags = {
     Terraform   = "true"
@@ -130,9 +130,9 @@ resource "aws_ssm_parameter" "master_password" {
 }
 
 resource "aws_ssm_parameter" "cluster_endpoint" {
-  name      = "/${var.env}/rds/${local.database_name}/endpoint_w"
-  type      = "SecureString"
-  value     = aws_rds_cluster.this.endpoint
+  name  = "/${var.env}/rds/${local.database_name}/endpoint_w"
+  type  = "SecureString"
+  value = aws_rds_cluster.this.endpoint
 
   tags = {
     Terraform   = "true"
@@ -141,9 +141,9 @@ resource "aws_ssm_parameter" "cluster_endpoint" {
 }
 
 resource "aws_ssm_parameter" "cluster_reader_endpoint" {
-  name      = "/${var.env}/rds/${local.database_name}/endpoint_r"
-  type      = "SecureString"
-  value     = aws_rds_cluster.this.reader_endpoint
+  name  = "/${var.env}/rds/${local.database_name}/endpoint_r"
+  type  = "SecureString"
+  value = aws_rds_cluster.this.reader_endpoint
 
   tags = {
     Terraform   = "true"
