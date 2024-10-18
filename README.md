@@ -1,10 +1,10 @@
-# go-api-sample-todo-terraform
+# go-api-sample-todo-terraform-cicd
 
 ## Usage
 ### Setup terraform
 ```
-$ git clone https://github.com/Ixy-194/go-api-sample-todo-terraform.git
-$ cd go-api-sample-todo-terraform
+$ git clone https://github.com/Ixy-194/go-api-sample-todo-terraform-cicdc.git
+$ cd go-api-sample-todo-terraform-cicd
 $ docker-compose up -d 
 $ docker exec -it terraform ash
 
