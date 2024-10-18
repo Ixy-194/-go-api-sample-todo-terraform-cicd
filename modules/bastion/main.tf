@@ -53,23 +53,23 @@ resource "aws_security_group" "this" {
 
 # IAM 
 ## コンソールからセッションマネージャーでアクセスできるように、IAMロールとIAMポリシーを設定
-  resource "aws_iam_role" "this" {
-    name = "${var.env}-iam-role-bastion"
+resource "aws_iam_role" "this" {
+  name = "${var.env}-iam-role-bastion"
 
-    assume_role_policy = jsonencode({
-      Version = "2012-10-17"
-      Statement = [
-        {
-          Action = "sts:AssumeRole"
-          Effect = "Allow"
-          Sid    = ""
-          Principal = {
-            Service = "ec2.amazonaws.com"
-          }
-        },
-      ]
-    })
-  }
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      },
+    ]
+  })
+}
 
 resource "aws_iam_instance_profile" "this" {
   name = "${var.env}-iam-instance-profile-bastion"
