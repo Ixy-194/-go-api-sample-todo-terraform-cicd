@@ -46,6 +46,18 @@ jobs:
         working-directory: ./env/dev
         run: terraform validate
 
+      - name: Run TFLint
+        uses: reviewdog/action-tflint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          tflint_init: "true"
+          tflint_config: "${{ github.workspace }}/.tflint.hcl"
+          level: "error"
+          fail_on_error: "true"
+          filter_mode: "added"
+          flags: "--recursive"
+        
       - name: Create Terraform Plan (Dev)
         working-directory: ./env/dev
         id: dev_plan
@@ -78,14 +90,3 @@ jobs:
                 body: output
             });
 
-      - name: Run TFLint
-        uses: reviewdog/action-tflint@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-review
-          tflint_init: "true"
-          tflint_config: "${{ github.workspace }}/.tflint.hcl"
-          level: "error"
-          fail_on_error: "true"
-          filter_mode: "added"
-          flags: "--recursive"
