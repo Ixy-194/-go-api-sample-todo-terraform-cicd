@@ -51,13 +51,13 @@ module "vpc" {
 #   access_allow_cidr_blocks = module.vpc.vpc.private_subnets_cidr_blocks
 # }
 
-# module "bastion" {
-#   source = "../../modules/bastion"
+module "bastion" {
+  source = "../../modules/bastion"
 
-#   env       = local.env
-#   vpc_id    = module.vpc.vpc.vpc_id
-#   subnet_id = module.vpc.vpc.private_subnets[0]
-# }
+  env       = local.env
+  vpc_id    = module.vpc.vpc.vpc_id
+  subnet_id = module.vpc.vpc.private_subnets[0]
+}
 
 # module "ecr" {
 #   source = "../../modules/ecr"
