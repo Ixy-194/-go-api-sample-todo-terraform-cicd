@@ -13,6 +13,7 @@ jobs:
   terraform:
     name: Terraform Apply
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     defaults:
       run:
@@ -38,6 +39,6 @@ jobs:
         working-directory: ./env/dev
         run: terraform init
 
-      - name: Apply Terraform
+      - name: Apply Terraform Configuration
         working-directory: ./env/dev
         run: terraform apply -auto-approve
