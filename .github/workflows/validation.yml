@@ -3,6 +3,8 @@ name: Terraform Validation
 on:
   pull_request:
   push:
+    branches:
+      - main
 
 jobs:
   terraform:
@@ -46,7 +48,7 @@ jobs:
         run: terraform plan -no-color
 
       - name: Update Pull Request with Terraform Plan
-        uses: actions/github-script@v5
+        uses: actions/github-script@v7
         if: github.event_name == 'pull_request'
         env:
           Dev_PLAN: "terraform\n${{ steps.dev_plan.outputs.stdout }}"
@@ -54,4 +56,32 @@ jobs:
           result-encoding: string
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-        
+            const output = `#### Check! Terraform Show Plans 🖌\`
+            <details><summary>Dev Show Plan</summary>
+
+            \`\`\`\n
+            ${process.env.Dev_PLAN}
+            \`\`\`
+
+            </details>
+
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+
+            github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+            });
+
+      - name: Run TFLint
+        uses: reviewdog/action-tflint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          tflint_init: "true"
+          tflint_config: "${{ github.workspace }}/.tflint.hcl"
+          level: "error"
+          fail_on_error: "true"
+          filter_mode: "added"
+          flags: "--recursive"
