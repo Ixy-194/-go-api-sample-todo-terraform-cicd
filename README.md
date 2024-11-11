@@ -1,6 +1,7 @@
 # go-api-sample-todo-terraform-cicd
 ![image](https://github.com/user-attachments/assets/03c4e605-a600-4814-be07-9b81833965cd)
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/fa6ca846-450e-4a63-883c-aebc2bd333c4)
+
 
 ## Usage
 ### Setup terraform
